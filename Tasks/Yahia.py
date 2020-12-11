@@ -24,6 +24,9 @@ def is_int_or_float(numbers):
     return all(isinstance(number, (int, float)) for number in numbers)
 
 
+is_int_or_float.__doc__ = "function return true iff int or float"
+
+
 def divide_two_numbers(numerator, denominator):
     if not is_int_or_float([numerator, denominator]):
         return ERROR_MASSAGE_INVALID_DATATYPE
@@ -54,17 +57,20 @@ def sum_two_numbers(first_number, second_number):
 sum_two_numbers.__doc__ = "function that sum two numbers"
 
 
-def print_even_numbers(numbers):
-    print([number for number in numbers if number % 2 == 0])
+def get_even_numbers(numbers):
+    return [number for number in numbers if number % 2 == 0]
 
 
-sum_two_numbers.__doc__ = "function print even numbers form given list"
+sum_two_numbers.__doc__ = "function gets even numbers form given list"
 
 
 class Test(unittest.TestCase):
-    # TODO handle pass whole datatype in python
     def test_is_int_or_float(self):
-        pass
+        self.assertEqual(is_int_or_float([1, 52, 5, 4.2]), True)
+        self.assertEqual(is_int_or_float([1.1, 52.2, 5.2, 4.2]), True)
+        self.assertEqual(is_int_or_float([1, '5']), False)
+        self.assertEqual(is_int_or_float(['yahia senior']), False)
+        self.assertEqual(is_int_or_float(['ahly']), False)
 
     def test_divide_two_numbers(self):
         self.assertEqual(divide_two_numbers(6, 4), 1)
@@ -92,9 +98,12 @@ class Test(unittest.TestCase):
         self.assertEqual(sum_two_numbers(1000, 5), 1005)
         self.assertEqual(sum_two_numbers("yahia", -1), ERROR_MASSAGE_INVALID_DATATYPE)
 
-    # TODO How we test void function
-    def test_print_even_numbers(self):
-        pass
+    def test_get_even_numbers(self):
+        self.assertEqual(get_even_numbers([2.3, 2.3, 0, 5]), [0])
+        self.assertEqual(get_even_numbers([2, 2, 0, 5]), [2, 2, 0])
+        self.assertEqual(get_even_numbers([2, 2.2, 0, 5]), [2, 0])
+        self.assertEqual(get_even_numbers([2, -2, 0, -5]), [2, -2, 0])
+        self.assertEqual(get_even_numbers([1, -1, 3, -5]), [])
 
 
 if __name__ == '__main__':

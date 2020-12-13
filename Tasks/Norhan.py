@@ -59,7 +59,7 @@ class TestCalc(unittest.TestCase):
         self.assertEqual(sum("hhh", "hhh"), "invalid input")
         self.assertEqual(sum(-1, "hhh"), "invalid input")
 
-    def test_subtract(self):
+    def test_divide(self):
         self.assertEqual(divide(10, 5), 2)
         self.assertEqual(divide(-1, 1), -1)
         self.assertEqual(divide(-1, -1), 1)
